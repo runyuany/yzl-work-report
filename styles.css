@@ -21,6 +21,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 84px;
+  overflow-x: clip;
 }
 
 body {
@@ -28,6 +29,7 @@ body {
   color: var(--ink);
   background: var(--page);
   line-height: 1.65;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -78,9 +80,10 @@ a { color: inherit; text-decoration: none; }
 .nav {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
-  overflow-x: auto;
-  padding-bottom: 2px;
+  overflow: visible;
+  padding-bottom: 0;
 }
 
 .nav a {
@@ -125,24 +128,27 @@ h1, h2, h3, p { margin-top: 0; }
   position: absolute;
   left: 0;
   top: calc(100% + 8px);
-  z-index: 50;
+  z-index: 100;
   display: block;
   width: max-content;
-  max-width: min(420px, calc(100vw - 40px));
-  padding: 10px 12px;
-  border: 1px solid rgba(18, 43, 73, 0.12);
+  max-width: min(460px, calc(100vw - 40px));
+  padding: 12px 14px;
+  border: 1px solid rgba(145, 205, 255, 0.72);
   border-radius: var(--radius);
-  color: white;
-  background: rgba(18, 43, 73, 0.96);
-  box-shadow: 0 16px 34px rgba(18, 43, 73, 0.18);
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.48;
+  color: #ffffff;
+  background: #071826;
+  box-shadow: 0 18px 42px rgba(7, 24, 38, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.56;
   letter-spacing: 0;
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-4px);
-  transition: opacity 0.16s ease, transform 0.16s ease;
+  text-align: left;
+  text-wrap: pretty;
+  transform: translateY(-6px) scale(0.98);
+  transform-origin: top left;
+  transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .jp::before {
@@ -152,7 +158,9 @@ h1, h2, h3, p { margin-top: 0; }
   top: -6px;
   width: 10px;
   height: 10px;
-  background: rgba(18, 43, 73, 0.96);
+  border-left: 1px solid rgba(145, 205, 255, 0.72);
+  border-top: 1px solid rgba(145, 205, 255, 0.72);
+  background: #071826;
   transform: rotate(45deg);
 }
 
@@ -169,7 +177,7 @@ h1, h2, h3, p { margin-top: 0; }
 :is(a, p, h1, h2, h3, li, dd, strong, small, button, .eyebrow, .tag, .table-row span, .template-grid span):has(> .jp):focus-visible > .jp,
 :is(a, p, h1, h2, h3, li, dd, strong, small, button, .eyebrow, .tag, .table-row span, .template-grid span):has(> .jp):focus-within > .jp {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .nav a .jp,
@@ -178,7 +186,8 @@ h1, h2, h3, p { margin-top: 0; }
 .brand strong .jp,
 .brand small .jp {
   left: 50%;
-  transform: translate(-50%, -4px);
+  transform: translate(-50%, -6px) scale(0.98);
+  transform-origin: top center;
 }
 
 .nav a .jp::before,
@@ -200,7 +209,7 @@ h1, h2, h3, p { margin-top: 0; }
 .tab-button:focus-visible .jp,
 .brand:focus-visible strong .jp,
 .brand:focus-visible small .jp {
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0) scale(1);
 }
 
 h1 {
@@ -339,7 +348,7 @@ h3 {
   position: relative;
   min-height: 230px;
   padding: 26px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .feature-panel::before {
@@ -619,7 +628,7 @@ h3 {
 
 .final-statement {
   max-width: 1160px;
-  margin: 22px auto 0;
+  margin: 0 auto;
   padding: 30px;
   border-color: #b9d7f0;
   background: white;
